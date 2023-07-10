@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject
+    var viewModel = MainViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationSplitView {
+            List(viewModel.scenes, selection: $viewModel.sceneId) { scene in
+                Text(scene.title)
+            }
+        } content: {
+            ZStack {
+                Color.pink
+                List(viewModel.tests, selection: $viewModel.testId) { test in
+                    Text(test.title)
+                }
+            }
+        } detail: {
+            viewModel.sceneView
         }
-        .padding()
+        .navigationTitle("Triangle App")
+        .navigationSubtitle("Test")
+        .onAppear() {
+            viewModel.onAppear()
+        }
     }
 }
