@@ -121,13 +121,13 @@ final class DelaunayScene: ObservableObject, SceneContainer {
         }
     }
     
-    private func shape() -> FixShape {
+    private func shape() -> FlipShape {
         var paths = [[FixVec]]()
         for editor in editors {
             paths.append(editor.points.map({ $0.fix }))
         }
         
-        return FixShape(paths: paths)
+        return FlipShape(paths: paths)
     }
     
 }
