@@ -122,24 +122,6 @@ final class DelaunayScene: ObservableObject, SceneContainer {
             
             i += 3
         }
-        
-//        let shape = self.shape()
-//
-//        let result = shape.triangulate()
-//
-//        triangles.removeAll()
-//
-//        if result.isSuccess {
-//            var id = 0
-//            var pnts = [CGPoint](repeating: .zero, count: 3)
-//            for triangle in result.delaunay.triangles {
-//                pnts[0] = matrix.screen(worldPoint: triangle.vertices.a.point.cgPoint)
-//                pnts[1] = matrix.screen(worldPoint: triangle.vertices.b.point.cgPoint)
-//                pnts[2] = matrix.screen(worldPoint: triangle.vertices.c.point.cgPoint)
-//                triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
-//                id += 1
-//            }
-//        }
     }
 
     func printTest() {
@@ -149,14 +131,5 @@ final class DelaunayScene: ObservableObject, SceneContainer {
             i += 1
         }
     }
-    
-    private func shape() -> FlipShape {
-        var paths = [[FixVec]]()
-        for editor in editors {
-            paths.append(editor.points.map({ $0.fix }))
-        }
-        
-        return FlipShape(paths: paths)
-    }
-    
+
 }
