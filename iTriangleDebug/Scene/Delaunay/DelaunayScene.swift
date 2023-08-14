@@ -90,27 +90,56 @@ final class DelaunayScene: ObservableObject, SceneContainer {
     }
 
     func solve() {
-        guard !editors.isEmpty else { return }
-        
-        let shape = self.shape()
-        
-        let result = shape.triangulate()
-        
         triangles.removeAll()
         
-        if result.isSuccess {
-            var id = 0
-            var pnts = [CGPoint](repeating: .zero, count: 3)
-            for triangle in result.delaunay.triangles {
-                pnts[0] = matrix.screen(worldPoint: triangle.vertices.a.point.cgPoint)
-                pnts[1] = matrix.screen(worldPoint: triangle.vertices.b.point.cgPoint)
-                pnts[2] = matrix.screen(worldPoint: triangle.vertices.c.point.cgPoint)
-                triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
-                id += 1
-            }
+        defer {
+            self.objectWillChange.send()
         }
+        
+        guard !editors.isEmpty else { return }
 
-        self.objectWillChange.send()
+        let paths = editors.map { $0.points }
+        let triangulation = Triangulator.triangulate(paths: paths)
+        
+        var id = 0
+        var pnts = [CGPoint](repeating: .zero, count: 3)
+        var i = 0
+        while i < triangulation.indices.count {
+            let ia = triangulation.indices[i]
+            let ib = triangulation.indices[i + 1]
+            let ic = triangulation.indices[i + 2]
+            
+            let a = triangulation.points[ia]
+            let b = triangulation.points[ib]
+            let c = triangulation.points[ic]
+            
+            pnts[0] = matrix.screen(worldPoint: a)
+            pnts[1] = matrix.screen(worldPoint: b)
+            pnts[2] = matrix.screen(worldPoint: c)
+
+            triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
+            id += 1
+            
+            i += 3
+        }
+        
+//        let shape = self.shape()
+//
+//        let result = shape.triangulate()
+//
+//        triangles.removeAll()
+//
+//        if result.isSuccess {
+//            var id = 0
+//            var pnts = [CGPoint](repeating: .zero, count: 3)
+//            for triangle in result.delaunay.triangles {
+//                pnts[0] = matrix.screen(worldPoint: triangle.vertices.a.point.cgPoint)
+//                pnts[1] = matrix.screen(worldPoint: triangle.vertices.b.point.cgPoint)
+//                pnts[2] = matrix.screen(worldPoint: triangle.vertices.c.point.cgPoint)
+//                triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
+//                id += 1
+//            }
+//        }
     }
 
     func printTest() {
