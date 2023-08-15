@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54D994612A8A79C100C52A86 /* ConditionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994602A8A79C100C52A86 /* ConditionScene.swift */; };
+		54D994632A8A79CF00C52A86 /* ConditionSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994622A8A79CF00C52A86 /* ConditionSceneView.swift */; };
+		54D994652A8A7A1300C52A86 /* ConditionTestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994642A8A7A1300C52A86 /* ConditionTestStore.swift */; };
 		54EBB0342A5C3FE000E4E31F /* iTriangleDebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0332A5C3FE000E4E31F /* iTriangleDebugApp.swift */; };
 		54EBB0362A5C3FE000E4E31F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0352A5C3FE000E4E31F /* MainView.swift */; };
 		54EBB0382A5C3FE100E4E31F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54EBB0372A5C3FE100E4E31F /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54D994602A8A79C100C52A86 /* ConditionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionScene.swift; sourceTree = "<group>"; };
+		54D994622A8A79CF00C52A86 /* ConditionSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSceneView.swift; sourceTree = "<group>"; };
+		54D994642A8A7A1300C52A86 /* ConditionTestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTestStore.swift; sourceTree = "<group>"; };
 		54EBB0302A5C3FE000E4E31F /* iTriangleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTriangleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EBB0332A5C3FE000E4E31F /* iTriangleDebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTriangleDebugApp.swift; sourceTree = "<group>"; };
 		54EBB0352A5C3FE000E4E31F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -68,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		54D9945F2A8A79AE00C52A86 /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				54D994602A8A79C100C52A86 /* ConditionScene.swift */,
+				54D994622A8A79CF00C52A86 /* ConditionSceneView.swift */,
+			);
+			path = Condition;
+			sourceTree = "<group>";
+		};
 		54EBB0272A5C3FE000E4E31F = {
 			isa = PBXGroup;
 			children = (
@@ -120,10 +135,12 @@
 		54EBB0432A5C408D00E4E31F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				54D9945F2A8A79AE00C52A86 /* Condition */,
 				54EBB04A2A5C40FD00E4E31F /* Monotone */,
 				54EBB0492A5C40F200E4E31F /* Delaunay */,
 				54EBB0452A5C40B900E4E31F /* SceneContainer.swift */,
 				54EBB0592A5C422800E4E31F /* TriangleTestStore.swift */,
+				54D994642A8A7A1300C52A86 /* ConditionTestStore.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -255,10 +272,13 @@
 				54EBB04E2A5C417100E4E31F /* MonotoneSceneView.swift in Sources */,
 				54EBB04C2A5C416600E4E31F /* MonotoneScene.swift in Sources */,
 				54EBB0362A5C3FE000E4E31F /* MainView.swift in Sources */,
+				54D994632A8A79CF00C52A86 /* ConditionSceneView.swift in Sources */,
 				54EBB05C2A5C423800E4E31F /* DelaunayScene.swift in Sources */,
 				54EBB05E2A5C424200E4E31F /* DelaunaySceneView.swift in Sources */,
+				54D994612A8A79C100C52A86 /* ConditionScene.swift in Sources */,
 				54EBB0342A5C3FE000E4E31F /* iTriangleDebugApp.swift in Sources */,
 				54EBB0462A5C40B900E4E31F /* SceneContainer.swift in Sources */,
+				54D994652A8A7A1300C52A86 /* ConditionTestStore.swift in Sources */,
 				54EBB05A2A5C422800E4E31F /* TriangleTestStore.swift in Sources */,
 				54EBB0502A5C417C00E4E31F /* TVert.swift in Sources */,
 				54EBB0482A5C40E000E4E31F /* TestStore.swift in Sources */,

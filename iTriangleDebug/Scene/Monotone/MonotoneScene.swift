@@ -68,7 +68,6 @@ final class MonotoneScene: ObservableObject, SceneContainer {
     func didUpdateEditor(_ :[CGPoint]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            // TODO validate convex
             self.solve()
         }
     }

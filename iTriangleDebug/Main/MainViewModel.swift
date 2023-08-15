@@ -12,13 +12,15 @@ final class MainViewModel: ObservableObject {
 
     private let monotoneScene = MonotoneScene(id: 0)
     private let delaunayScene = DelaunayScene(id: 1)
+    private let conditionScene = ConditionScene(id: 2)
     private var testStore: TestStore?
 
     private (set) var pIndex = PersistInt(key: "TestIndex", nilValue: 0)
     
     lazy var scenes: [SceneHandler] = [
         monotoneScene.handler,
-        delaunayScene.handler
+        delaunayScene.handler,
+        conditionScene.handler,
     ]
 
     @Published
@@ -44,6 +46,8 @@ final class MainViewModel: ObservableObject {
             monotoneScene.makeView()
         case 1:
             delaunayScene.makeView()
+        case 2:
+            conditionScene.makeView()
         default:
             fatalError("scene not set")
         }
@@ -67,6 +71,8 @@ final class MainViewModel: ObservableObject {
             testStore = monotoneScene.testStore
         case 1:
             testStore = delaunayScene.testStore
+        case 2:
+            testStore = conditionScene.testStore
         default:
             break
         }
