@@ -99,7 +99,8 @@ final class DelaunayScene: ObservableObject, SceneContainer {
         guard !editors.isEmpty else { return }
 
         let paths = editors.map { $0.points }
-        let triangulation = Triangulator.triangulate(paths: paths)
+        let shape = FixShape(paths: paths.map({ $0.map({ Vec(Float($0.x), Float($0.y)).fix }) }))
+        let triangulation = shape.triangulate()
         
         var id = 0
         var pnts = [CGPoint](repeating: .zero, count: 3)

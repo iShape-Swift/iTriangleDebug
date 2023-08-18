@@ -90,14 +90,14 @@ final class DynamicScene: ObservableObject, SceneContainer {
         let sB = pointsB.map({ $0.fixVec })
 
         let shape = FixShape(contour: sA, holes: [sB])
-        let result = shape.triangulate()
+        let delaunay = shape.delaunay()
         
         
         var i = 0
         var id = 0
         var pnts = [CGPoint](repeating: .zero, count: 3)
-        let indices = result.delaunay.trianglesIndices
-        let points = result.delaunay.points
+        let indices = delaunay.trianglesIndices
+        let points = delaunay.points
         while i < indices.count {
             let color = Color(index: id)
             

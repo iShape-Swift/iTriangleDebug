@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-import iDebug
-@testable import iTriangle
-import iShape
 import iFixFloat
+import iDebug
+import iShape
+import iOverlay
+
+@testable import iTriangle
 
 final class MonotoneScene: ObservableObject, SceneContainer {
     
@@ -77,56 +79,61 @@ final class MonotoneScene: ObservableObject, SceneContainer {
     }
 
     func solve() {
-        guard !editors.isEmpty else { return }
-        
-        let shape = self.shape().flip
-        
-        let nLayout = shape.nLayout
-        
         verts.removeAll()
-        var i = 0
-        for n in nLayout.specNodes {
-            let v = nLayout.navNodes[n.index]
-            let p = matrix.screen(worldPoint: v.vert.point.point)
-            let color: Color
-            let title: String
-            switch n.type {
-            case .end:
-                color = .red
-                title = "end (\(i))"
-            case .start:
-                color = .blue
-                title = "start (\(i))"
-            case .split:
-                color = .orange
-                title = "split (\(i))"
-            case .merge:
-                color = .green
-                title = "merge (\(i))"
-            }
-
-            verts.append(.init(id: i, title: title, pos: p, color: color))
-            i += 1
-        }
-        
-        let layout = shape.mLayout
-
         mPolies.removeAll()
 
-        var mId = 0
-        for start in layout.startList {
-            var node = layout.navNodes[start]
-            var points = [CGPoint]()
-            repeat {
-                points.append(matrix.screen(worldPoint: node.vert.point.cgPoint))
-                node = layout.navNodes[node.next]
-            } while node.index != start
-            mPolies.append(.init(id: mId, color: Color(index: mId), points: points))
-            mId += 1
+        defer {
+            self.objectWillChange.send()
         }
         
+        guard !editors.isEmpty else { return }
+                
+        let fixShape = self.shape()
+        let shapes = fixShape.resolveSelfIntersection()
         
-        self.objectWillChange.send()
+        var mId = 0
+        var i = 0
+
+        for sh in shapes {
+            let s = sh.flip
+            let nLayout = s.nLayout
+            for n in nLayout.specNodes {
+                let v = nLayout.navNodes[n.index]
+                let p = matrix.screen(worldPoint: v.vert.point.point)
+                let color: Color
+                let title: String
+                switch n.type {
+                case .end:
+                    color = .red
+                    title = "end (\(i))"
+                case .start:
+                    color = .blue
+                    title = "start (\(i))"
+                case .split:
+                    color = .orange
+                    title = "split (\(i))"
+                case .merge:
+                    color = .green
+                    title = "merge (\(i))"
+                }
+
+                verts.append(.init(id: i, title: title, pos: p, color: color))
+                i += 1
+            }
+            
+            let layout = s.mLayout
+
+            for start in layout.startList {
+                var node = layout.navNodes[start]
+                var points = [CGPoint]()
+                repeat {
+                    points.append(matrix.screen(worldPoint: node.vert.point.cgPoint))
+                    node = layout.navNodes[node.next]
+                } while node.index != start
+                mPolies.append(.init(id: mId, color: Color(index: mId), points: points))
+                mId += 1
+            }
+        }
     }
 
     func printTest() {
