@@ -90,7 +90,9 @@ final class DynamicScene: ObservableObject, SceneContainer {
         let sB = pointsB.map({ $0.fixVec })
 
         let shape = FixShape(contour: sA, holes: [sB])
-        let delaunay = shape.delaunay()
+        guard let delaunay = shape.delaunay() else {
+            return
+        }
         
         
         var i = 0
@@ -99,8 +101,6 @@ final class DynamicScene: ObservableObject, SceneContainer {
         let indices = delaunay.trianglesIndices
         let points = delaunay.points
         while i < indices.count {
-            let color = Color(index: id)
-            
             let ia = indices[i]
             let ib = indices[i + 1]
             let ic = indices[i + 2]
