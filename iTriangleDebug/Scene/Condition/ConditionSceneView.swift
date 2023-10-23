@@ -33,6 +33,7 @@ struct ConditionSceneView: View {
                     scene.solve()
                 }.buttonStyle(.borderedProminent).padding()
                 Slider(value: $scene.scale, in: 5...100).frame(width: 500).padding(.trailing, 8)
+                Text(scene.description).foregroundColor(.gray)
                 Spacer()
             }
             if let circle = scene.circle {

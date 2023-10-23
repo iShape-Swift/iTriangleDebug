@@ -22,6 +22,7 @@ final class ConditionScene: ObservableObject, SceneContainer {
     private (set) var main = [CGPoint]()
     private (set) var second = [CGPoint]()
     private (set) var condition: Color = .gray
+    private (set) var description: String = ""
     private (set) var editor = PointsEditor()
     private (set) var matrix: Matrix = .empty
     
@@ -94,12 +95,21 @@ final class ConditionScene: ObservableObject, SceneContainer {
         let p2 = points[2]
         let p3 = points[3]
         
-        let cond = Delaunay.condition(p0: p0.fix, p1: p1.fix, p2: p2.fix, p3: p3.fix)
+        let cond = Delaunay.condition_debug(p0: p0.fix, p1: p1.fix, p2: p2.fix, p3: p3.fix)
         
-        if cond {
-            self.condition = Color.green
-        } else {
+        switch cond {
+        case .a_and_b_more_90:
             self.condition = Color.red
+            self.description = "A and B more 90"
+        case .a_and_b_less_90:
+            self.condition = Color.green
+            self.description = "A and B less 90"
+        case .other_path:
+            self.condition = Color.green
+            self.description = "other pass"
+        case .other_fail:
+            self.condition = Color.red
+            self.description = "other fail"
         }
         
         self.main = matrix.screen(worldPoints: [p1, p2, p3])

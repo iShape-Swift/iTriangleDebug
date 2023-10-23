@@ -114,9 +114,9 @@ final class DelaunayScene: ObservableObject, SceneContainer {
             let b = triangulation.points[ib]
             let c = triangulation.points[ic]
             
-            pnts[0] = matrix.screen(worldPoint: a)
-            pnts[1] = matrix.screen(worldPoint: b)
-            pnts[2] = matrix.screen(worldPoint: c)
+            pnts[0] = matrix.screen(worldPoint: a.cgPoint)
+            pnts[1] = matrix.screen(worldPoint: b.cgPoint)
+            pnts[2] = matrix.screen(worldPoint: c.cgPoint)
 
             triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
             id += 1
