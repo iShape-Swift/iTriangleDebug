@@ -134,6 +134,7 @@ final class MonotoneScene: ObservableObject, SceneContainer {
                 mId += 1
             }
         }
+        
     }
 
     func printTest() {

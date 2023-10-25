@@ -98,8 +98,10 @@ final class DynamicScene: ObservableObject, SceneContainer {
         var i = 0
         var id = 0
         var pnts = [CGPoint](repeating: .zero, count: 3)
-        let indices = delaunay.trianglesIndices
-        let points = delaunay.points
+        let triangulation = delaunay.triangulation()
+        let indices = triangulation.indices
+        let points = triangulation.points
+        
         while i < indices.count {
             let ia = indices[i]
             let ib = indices[i + 1]

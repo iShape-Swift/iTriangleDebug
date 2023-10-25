@@ -1,8 +1,8 @@
 //
-//  DelaunayScene.swift
+//  ConvexScene.swift
 //  iTriangleDebug
 //
-//  Created by Nail Sharipov on 10.07.2023.
+//  Created by Nail Sharipov on 25.10.2023.
 //
 
 import SwiftUI
@@ -11,15 +11,15 @@ import iDebug
 import iFixFloat
 import iShape
 
-final class DelaunayScene: ObservableObject, SceneContainer {
+final class ConvexScene: ObservableObject, SceneContainer {
     
     static let colorA: Color = .red
     static let colorB: Color = .blue
     
     let id: Int
-    let title = "Delaunay"
+    let title = "Convex"
     let triangTestStore = TriangleTestStore()
-    private (set) var triangles: [MPoly] = []
+    private (set) var polies: [MPoly] = []
     private (set) var vertices: [TextDot] = []
     var testStore: TestStore { triangTestStore }
 
@@ -54,8 +54,8 @@ final class DelaunayScene: ObservableObject, SceneContainer {
         }
     }
     
-    func makeView() -> DelaunaySceneView {
-        DelaunaySceneView(scene: self)
+    func makeView() -> ConvexSceneView {
+        ConvexSceneView(scene: self)
     }
     
     func didUpdateTest() {
@@ -91,7 +91,7 @@ final class DelaunayScene: ObservableObject, SceneContainer {
     }
 
     func solve() {
-        triangles.removeAll()
+        polies.removeAll()
         vertices.removeAll()
         
         defer {
@@ -102,29 +102,18 @@ final class DelaunayScene: ObservableObject, SceneContainer {
 
         let paths = editors.map { $0.points }
         let shape = FixShape(paths: paths.map({ $0.map({ Vec(Float($0.x), Float($0.y)).fix }) }))
-        let triangulation = shape.triangulate(validate: true)
+        
+
+        let polygons = shape.decomposeToConvexPolygons()
         
         var id = 0
-        var pnts = [CGPoint](repeating: .zero, count: 3)
-        var i = 0
-        while i < triangulation.indices.count {
-            let ia = triangulation.indices[i]
-            let ib = triangulation.indices[i + 1]
-            let ic = triangulation.indices[i + 2]
-            
-            let a = triangulation.points[ia]
-            let b = triangulation.points[ib]
-            let c = triangulation.points[ic]
-            
-            pnts[0] = matrix.screen(worldPoint: a.cgPoint)
-            pnts[1] = matrix.screen(worldPoint: b.cgPoint)
-            pnts[2] = matrix.screen(worldPoint: c.cgPoint)
-
-            triangles.append(MPoly(id: id, color: Color(index: id), points: pnts))
+        for polygon in polygons {
+            let points = matrix.screen(worldPoints: polygon.path.map({ $0.cgPoint }))
+            self.polies.append(MPoly(id: id, color: Color(index: id), points: points))
             id += 1
-            
-            i += 3
         }
+        
+        let triangulation = shape.triangulate()
         
         for i in 0..<triangulation.points.count {
             let p = matrix.screen(worldPoint: triangulation.points[i].cgPoint)

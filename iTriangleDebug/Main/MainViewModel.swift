@@ -14,6 +14,7 @@ final class MainViewModel: ObservableObject {
     private let delaunayScene = DelaunayScene(id: 1)
     private let conditionScene = ConditionScene(id: 2)
     private let dynamicScene = DynamicScene(id: 3)
+    private let convexScene = ConvexScene(id: 4)
     private var testStore: TestStore?
 
     private (set) var pIndex = PersistInt(key: "TestIndex", nilValue: 0)
@@ -22,7 +23,8 @@ final class MainViewModel: ObservableObject {
         monotoneScene.handler,
         delaunayScene.handler,
         conditionScene.handler,
-        dynamicScene.handler
+        dynamicScene.handler,
+        convexScene.handler
     ]
 
     @Published
@@ -52,6 +54,8 @@ final class MainViewModel: ObservableObject {
             conditionScene.makeView()
         case 3:
             dynamicScene.makeView()
+        case 4:
+            convexScene.makeView()
         default:
             fatalError("scene not set")
         }
@@ -79,6 +83,8 @@ final class MainViewModel: ObservableObject {
             testStore = conditionScene.testStore
         case 3:
             testStore = dynamicScene.testStore
+        case 4:
+            testStore = convexScene.testStore
         default:
             break
         }

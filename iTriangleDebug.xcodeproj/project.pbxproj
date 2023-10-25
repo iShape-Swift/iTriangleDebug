@@ -12,6 +12,8 @@
 		546E13912A8F5F8900AE53C6 /* iOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13902A8F5F8900AE53C6 /* iOverlay */; };
 		546E13932A8F5F8900AE53C6 /* iShape in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13922A8F5F8900AE53C6 /* iShape */; };
 		546E13952A8F5F8900AE53C6 /* iTriangle in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13942A8F5F8900AE53C6 /* iTriangle */; };
+		54B9F4042AE9A16C00D41836 /* ConvexScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F4032AE9A16C00D41836 /* ConvexScene.swift */; };
+		54B9F4062AE9A19300D41836 /* ConvexSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F4052AE9A19300D41836 /* ConvexSceneView.swift */; };
 		54D994612A8A79C100C52A86 /* ConditionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994602A8A79C100C52A86 /* ConditionScene.swift */; };
 		54D994632A8A79CF00C52A86 /* ConditionSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994622A8A79CF00C52A86 /* ConditionSceneView.swift */; };
 		54D994652A8A7A1300C52A86 /* ConditionTestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994642A8A7A1300C52A86 /* ConditionTestStore.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54B9F4032AE9A16C00D41836 /* ConvexScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexScene.swift; sourceTree = "<group>"; };
+		54B9F4052AE9A19300D41836 /* ConvexSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexSceneView.swift; sourceTree = "<group>"; };
 		54D994602A8A79C100C52A86 /* ConditionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionScene.swift; sourceTree = "<group>"; };
 		54D994622A8A79CF00C52A86 /* ConditionSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSceneView.swift; sourceTree = "<group>"; };
 		54D994642A8A7A1300C52A86 /* ConditionTestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTestStore.swift; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		54B9F4022AE9A15400D41836 /* Convex */ = {
+			isa = PBXGroup;
+			children = (
+				54B9F4032AE9A16C00D41836 /* ConvexScene.swift */,
+				54B9F4052AE9A19300D41836 /* ConvexSceneView.swift */,
+			);
+			path = Convex;
+			sourceTree = "<group>";
+		};
 		54D9945F2A8A79AE00C52A86 /* Condition */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +164,7 @@
 		54EBB0432A5C408D00E4E31F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				54B9F4022AE9A15400D41836 /* Convex */,
 				54E32C062A8B935F008C56F8 /* Dynamic */,
 				54D9945F2A8A79AE00C52A86 /* Condition */,
 				54EBB04A2A5C40FD00E4E31F /* Monotone */,
@@ -302,7 +316,9 @@
 				54EBB05A2A5C422800E4E31F /* TriangleTestStore.swift in Sources */,
 				54EBB0502A5C417C00E4E31F /* TVert.swift in Sources */,
 				54EBB0482A5C40E000E4E31F /* TestStore.swift in Sources */,
+				54B9F4062AE9A19300D41836 /* ConvexSceneView.swift in Sources */,
 				54EBB0522A5C418900E4E31F /* MPoly.swift in Sources */,
+				54B9F4042AE9A16C00D41836 /* ConvexScene.swift in Sources */,
 				54EBB0602A5C433F00E4E31F /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
