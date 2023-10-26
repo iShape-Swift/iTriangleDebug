@@ -11,6 +11,14 @@ import iDebug
 import iFixFloat
 import iShape
 
+struct Edge: Identifiable {
+    
+    let id: Int
+    let a: CGPoint
+    let b: CGPoint
+    let color: Color
+}
+
 final class ConvexScene: ObservableObject, SceneContainer {
     
     static let colorA: Color = .red
@@ -21,6 +29,7 @@ final class ConvexScene: ObservableObject, SceneContainer {
     let triangTestStore = TriangleTestStore()
     private (set) var polies: [MPoly] = []
     private (set) var vertices: [TextDot] = []
+    private (set) var edges: [Edge] = []
     var testStore: TestStore { triangTestStore }
 
     private (set) var editors: [ContourEditor] = []
@@ -93,6 +102,7 @@ final class ConvexScene: ObservableObject, SceneContainer {
     func solve() {
         polies.removeAll()
         vertices.removeAll()
+        edges.removeAll()
         
         defer {
             self.objectWillChange.send()
@@ -111,6 +121,18 @@ final class ConvexScene: ObservableObject, SceneContainer {
             let points = matrix.screen(worldPoints: polygon.path.map({ $0.cgPoint }))
             self.polies.append(MPoly(id: id, color: Color(index: id), points: points))
             id += 1
+            
+            let pn = polygon.path.count
+            for j in 0..<pn {
+                let s = polygon.side[j]
+                if s == .inner {
+                    let a = matrix.screen(worldPoint: polygon.path[j].cgPoint)
+                    let b = matrix.screen(worldPoint: polygon.path[(j + 1) % pn].cgPoint)
+                    
+                    edges.append(Edge(id: edges.count, a: a, b: b, color: .green))
+                }
+            }
+            
         }
         
         let triangulation = shape.triangulate()

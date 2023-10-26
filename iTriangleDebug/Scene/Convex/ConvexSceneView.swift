@@ -44,6 +44,12 @@ struct ConvexSceneView: View {
             ForEach(scene.vertices) { dot in
                 TextDotView(dot: dot)
             }
+            ForEach(scene.edges) { edge in
+                Path { path in
+                    path.move(to: edge.a)
+                    path.addLine(to: edge.b)
+                }.stroke(style: .init(lineWidth: 8, lineCap: .round)).foregroundColor(edge.color)
+            }
         }.onAppear() {
             scene.onAppear()
         }

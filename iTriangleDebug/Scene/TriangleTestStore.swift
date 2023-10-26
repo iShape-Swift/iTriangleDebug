@@ -93,6 +93,18 @@ final class TriangleTestStore: TestStore {
             ])
         ),
         .init(
+            name: "Home",
+            shape: CGShape(paths: [
+                [
+                    CGPoint(x: -10.0, y: -10.0),
+                    CGPoint(x: -10.0, y: 5.0),
+                    CGPoint(x: 0.0, y: 15.0),
+                    CGPoint(x: 10.0, y: 5.0),
+                    CGPoint(x: 10.0, y: -10.0)
+                ]
+            ])
+        ),
+        .init(
             name: "Square",
             shape: CGShape(paths: [
                 [
