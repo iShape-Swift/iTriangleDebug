@@ -112,7 +112,6 @@ final class ConvexScene: ObservableObject, SceneContainer {
 
         let paths = editors.map { $0.points }
         let shape = FixShape(paths: paths.map({ $0.map({ Vec(Float($0.x), Float($0.y)).fix }) }))
-        
 
         let polygons = shape.decomposeToConvexPolygons()
         
@@ -149,6 +148,7 @@ final class ConvexScene: ObservableObject, SceneContainer {
                 )
             )
         }
+
         
     }
 

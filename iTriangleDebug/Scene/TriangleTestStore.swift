@@ -33,6 +33,19 @@ struct CGShape {
     }
 }
 
+extension FixShape {
+    var cgShape: CGShape {
+        var result = [[CGPoint]]()
+        for path in paths {
+            result.append(path.map { $0.cgPoint })
+        }
+
+        return CGShape(paths: result)
+    }
+}
+
+
+
 final class TriangleTestStore: TestStore {
     
     private (set) var pIndex = PersistInt(key: String(describing: TriangleTestStore.self), nilValue: 0)
@@ -1084,6 +1097,162 @@ final class TriangleTestStore: TestStore {
                     CGPoint(x: -20, y:  18)
                 ]
             ])
+        ),
+        .init(
+            name: "Complex 21",
+            shape: CGShape(paths: [
+                [
+                    CGPoint(x: -20, y: -20),
+                    CGPoint(x: -20, y:  20),
+                    CGPoint(x:  20, y:  20),
+                    CGPoint(x:  20, y: -20)
+                ],
+                [
+                    CGPoint(x:   0, y:  20),
+                    CGPoint(x: -10, y:  10),
+                    CGPoint(x:   0, y:   0),
+                    CGPoint(x:  10, y:  10)
+                ]
+            ])
+        ),
+        .init(
+            name: "Complex 22",
+            shape: CGShape(paths: [
+                [
+                    CGPoint(x: -20, y: -20),
+                    CGPoint(x: -20, y:  20),
+                    CGPoint(x:  20, y:  20),
+                    CGPoint(x:  20, y: -20)
+                ],
+                [
+                    CGPoint(x:   0, y:  20),
+                    CGPoint(x: -10, y:  10),
+                    CGPoint(x:  10, y: -10),
+                    CGPoint(x: -10, y: -10),
+                    CGPoint(x:  10, y:  10)
+                ]
+            ])
+        ),
+        .init(
+            name: "Complex 23",
+            shape: CGShape(paths: [
+                [
+                    CGPoint(x: -20, y: -20),
+                    CGPoint(x: -20, y:  20),
+                    CGPoint(x:  20, y:  20),
+                    CGPoint(x:  20, y: -20)
+                ],
+                [
+                    CGPoint(x:   0, y:  20),
+                    CGPoint(x: -10, y:  10),
+                    CGPoint(x:  10, y:  10),
+                    CGPoint(x:   0, y:   0)
+                ]
+            ])
+        ),
+        .init(
+            name: "Complex 24",
+            shape: FixShape(paths: [
+                [
+                    FixVec(0, 20480),
+                    FixVec(20480, -20480),
+                    FixVec(-20480, -20480),
+                ],
+                [
+                    FixVec(    0,      0),
+                    FixVec(10240,      0),
+                    FixVec(    0, -10240),
+                    FixVec(10240, -10240),
+                ]
+            ]).cgShape
+        ),
+        .init(
+            name: "Complex 25",
+            shape: FixShape(paths: [
+                [
+                    FixVec(0, 20480),
+                    FixVec(9216, 1024),
+                    FixVec(14336, -15360),
+                    FixVec(-14336, -15360),
+                ],
+                [
+                    FixVec(-4096, -5120),
+                    FixVec(9216, 1024),
+                    FixVec(2048, -11264),
+                    FixVec(5120, -9216),
+                ]
+            ]).cgShape
+        ),
+        .init(
+            name: "Complex 26",
+            shape: FixShape(paths: [
+                [
+                    FixVec(0, 20480),
+                    FixVec(9216, 1024),
+                    FixVec(26624, -7168),
+                    FixVec(14336, -15360),
+                    FixVec(-14336, -15360),
+                    FixVec(-25600, -7168),
+                ],
+                [
+                    FixVec(-4096, -5120),
+                    FixVec(9216, 1024),
+                    FixVec(2048, -11264),
+                ]
+            ]).cgShape
+        ),
+        .init(
+            name: "Complex 27",
+            shape: FixShape(paths: [
+                [
+                    FixVec(0, 20480),
+                    FixVec(14336, -15360),
+                    FixVec(-14336, -15360),
+                    FixVec(-18432, 0),
+                    FixVec(-7168, 6144),
+                    FixVec(-10240, 8192)
+                ],
+                [
+                    FixVec(-2048, -2048),
+                    FixVec(-9216, 10240),
+                    FixVec(-2048, -9216),
+                ]
+            ]).cgShape
+        ),
+        .init(
+            name: "Complex 28",
+            shape: FixShape(paths: [
+                [
+                    FixVec(0, 20480),
+                    FixVec(8192, 10240),
+                    FixVec(7168, 6144),
+                    FixVec(9216, 1024),
+                    FixVec(13312, -1024),
+                    FixVec(17408, 1024),
+                    FixVec(26624, -7168),
+                    FixVec(14336, -15360),
+                    FixVec(0, -18432),
+                    FixVec(-14336, -15360),
+                    FixVec(-25600, -7168),
+                    FixVec(-18432, 0),
+                    FixVec(-16384, -3072),
+                    FixVec(-13312, -4096),
+                    FixVec(-8192, -2048),
+                    FixVec(-6144, 2048),
+                    FixVec(-7168, 6144),
+                    FixVec(-10240, 8192)
+                ],
+                [
+                    FixVec(2048, 0),
+                    FixVec(-2048, -2048),
+                    FixVec(-9216, 10240),
+                    FixVec(-2048, -9216),
+                    FixVec(2048, -11264),
+                    FixVec(5120, -9216),
+                    FixVec(7168, -5120),
+                    FixVec(5120, -2048)
+                ]
+            ]).cgShape
         ),
         .init(
             name: "Star 1",
