@@ -89,13 +89,12 @@ final class MonotoneScene: ObservableObject, SceneContainer {
         guard !editors.isEmpty else { return }
                 
         let fixShape = self.shape()
-        let shapes = fixShape.resolveSelfIntersection()
+        let shapes = fixShape.simplify(fillRule: .nonZero)
         
         var mId = 0
         var i = 0
 
-        for sh in shapes {
-            let s = sh.flip
+        for s in shapes {
             let nLayout = s.nLayout
             for n in nLayout.specNodes {
                 let v = nLayout.navNodes[n.index]

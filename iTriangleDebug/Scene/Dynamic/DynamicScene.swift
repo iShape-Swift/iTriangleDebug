@@ -84,7 +84,7 @@ final class DynamicScene: ObservableObject, SceneContainer {
             count: test.count,
             angle: angle,
             scale: scale
-        ).reversed()
+        )
         
         let sA = pointsA.map({ $0.fixVec })
         let sB = pointsB.map({ $0.fixVec })

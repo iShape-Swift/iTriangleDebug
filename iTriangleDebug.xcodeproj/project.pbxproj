@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,10 @@
 		546E13912A8F5F8900AE53C6 /* iOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13902A8F5F8900AE53C6 /* iOverlay */; };
 		546E13932A8F5F8900AE53C6 /* iShape in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13922A8F5F8900AE53C6 /* iShape */; };
 		546E13952A8F5F8900AE53C6 /* iTriangle in Frameworks */ = {isa = PBXBuildFile; productRef = 546E13942A8F5F8900AE53C6 /* iTriangle */; };
+		54A322B72B305451009CD8D6 /* iFixFloat in Frameworks */ = {isa = PBXBuildFile; productRef = 54A322B62B305451009CD8D6 /* iFixFloat */; };
+		54A322BA2B30545E009CD8D6 /* iShape in Frameworks */ = {isa = PBXBuildFile; productRef = 54A322B92B30545E009CD8D6 /* iShape */; };
+		54A322BD2B305470009CD8D6 /* iOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = 54A322BC2B305470009CD8D6 /* iOverlay */; };
+		54A322C02B30547A009CD8D6 /* iTriangle in Frameworks */ = {isa = PBXBuildFile; productRef = 54A322BF2B30547A009CD8D6 /* iTriangle */; };
 		54B9F4042AE9A16C00D41836 /* ConvexScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F4032AE9A16C00D41836 /* ConvexScene.swift */; };
 		54B9F4062AE9A19300D41836 /* ConvexSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F4052AE9A19300D41836 /* ConvexSceneView.swift */; };
 		54D994612A8A79C100C52A86 /* ConditionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D994602A8A79C100C52A86 /* ConditionScene.swift */; };
@@ -80,7 +84,11 @@
 				546E13932A8F5F8900AE53C6 /* iShape in Frameworks */,
 				546E138D2A8F5F8900AE53C6 /* iDebug in Frameworks */,
 				546E13912A8F5F8900AE53C6 /* iOverlay in Frameworks */,
+				54A322BD2B305470009CD8D6 /* iOverlay in Frameworks */,
+				54A322B72B305451009CD8D6 /* iFixFloat in Frameworks */,
 				546E13952A8F5F8900AE53C6 /* iTriangle in Frameworks */,
+				54A322C02B30547A009CD8D6 /* iTriangle in Frameworks */,
+				54A322BA2B30545E009CD8D6 /* iShape in Frameworks */,
 				546E138F2A8F5F8900AE53C6 /* iFixFloat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +259,10 @@
 				546E13902A8F5F8900AE53C6 /* iOverlay */,
 				546E13922A8F5F8900AE53C6 /* iShape */,
 				546E13942A8F5F8900AE53C6 /* iTriangle */,
+				54A322B62B305451009CD8D6 /* iFixFloat */,
+				54A322B92B30545E009CD8D6 /* iShape */,
+				54A322BC2B305470009CD8D6 /* iOverlay */,
+				54A322BF2B30547A009CD8D6 /* iTriangle */,
 			);
 			productName = iTriangleDebug;
 			productReference = 54EBB0302A5C3FE000E4E31F /* iTriangleDebug.app */;
@@ -280,6 +292,12 @@
 				Base,
 			);
 			mainGroup = 54EBB0272A5C3FE000E4E31F;
+			packageReferences = (
+				54A322B52B305451009CD8D6 /* XCLocalSwiftPackageReference "../../iFixFloat" */,
+				54A322B82B30545E009CD8D6 /* XCLocalSwiftPackageReference "../../iShape" */,
+				54A322BB2B305470009CD8D6 /* XCLocalSwiftPackageReference "../../iOverlay" */,
+				54A322BE2B30547A009CD8D6 /* XCLocalSwiftPackageReference "../../iTriangle" */,
+			);
 			productRefGroup = 54EBB0312A5C3FE000E4E31F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -542,6 +560,25 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		54A322B52B305451009CD8D6 /* XCLocalSwiftPackageReference "../../iFixFloat" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../iFixFloat;
+		};
+		54A322B82B30545E009CD8D6 /* XCLocalSwiftPackageReference "../../iShape" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../iShape;
+		};
+		54A322BB2B305470009CD8D6 /* XCLocalSwiftPackageReference "../../iOverlay" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../iOverlay;
+		};
+		54A322BE2B30547A009CD8D6 /* XCLocalSwiftPackageReference "../../iTriangle" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../iTriangle;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		546E138C2A8F5F8900AE53C6 /* iDebug */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -560,6 +597,22 @@
 			productName = iShape;
 		};
 		546E13942A8F5F8900AE53C6 /* iTriangle */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iTriangle;
+		};
+		54A322B62B305451009CD8D6 /* iFixFloat */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iFixFloat;
+		};
+		54A322B92B30545E009CD8D6 /* iShape */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iShape;
+		};
+		54A322BC2B305470009CD8D6 /* iOverlay */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iOverlay;
+		};
+		54A322BF2B30547A009CD8D6 /* iTriangle */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iTriangle;
 		};
