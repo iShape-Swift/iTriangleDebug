@@ -117,19 +117,16 @@ final class ConvexScene: ObservableObject, SceneContainer {
         
         var id = 0
         for polygon in polygons {
-            let points = matrix.screen(worldPoints: polygon.path.map({ $0.cgPoint }))
+            let points = matrix.screen(worldPoints: polygon.map({ $0.cgPoint }))
             self.polies.append(MPoly(id: id, color: Color(index: id), points: points))
             id += 1
             
-            let pn = polygon.path.count
+            let pn = polygon.count
             for j in 0..<pn {
-                let s = polygon.side[j]
-                if s == .inner {
-                    let a = matrix.screen(worldPoint: polygon.path[j].cgPoint)
-                    let b = matrix.screen(worldPoint: polygon.path[(j + 1) % pn].cgPoint)
-                    
-                    edges.append(Edge(id: edges.count, a: a, b: b, color: .green))
-                }
+                let a = matrix.screen(worldPoint: polygon[j].cgPoint)
+                let b = matrix.screen(worldPoint: polygon[(j + 1) % pn].cgPoint)
+                
+                edges.append(Edge(id: edges.count, a: a, b: b, color: .green))
             }
             
         }
