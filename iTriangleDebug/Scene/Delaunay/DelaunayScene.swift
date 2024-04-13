@@ -101,7 +101,7 @@ final class DelaunayScene: ObservableObject, SceneContainer {
         guard !editors.isEmpty else { return }
 
         let paths = editors.map { $0.points }
-        let shape = FixShape(paths: paths.map({ $0.map({ Vec(Float($0.x), Float($0.y)).fix }) }))
+        let shape = paths.map({ $0.map({ $0.point }) })
         let triangulation = shape.triangulate(validateRule: .evenOdd)
         
         var id = 0

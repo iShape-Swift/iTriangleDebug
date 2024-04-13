@@ -95,7 +95,7 @@ final class ConditionScene: ObservableObject, SceneContainer {
         let p2 = points[2]
         let p3 = points[3]
         
-        let cond = Delaunay.condition_debug(p0: p0.fix, p1: p1.fix, p2: p2.fix, p3: p3.fix)
+        let cond = Delaunay.condition_debug(p0: p0.point, p1: p1.point, p2: p2.point, p3: p3.point)
         
         switch cond {
         case .a_and_b_more_90:

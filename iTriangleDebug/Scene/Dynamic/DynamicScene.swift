@@ -86,10 +86,10 @@ final class DynamicScene: ObservableObject, SceneContainer {
             scale: scale
         )
         
-        let sA = pointsA.map({ $0.fixVec })
-        let sB = pointsB.map({ $0.fixVec })
+        let sA = pointsA.map({ $0.point })
+        let sB = pointsB.map({ $0.point })
 
-        let shape = FixShape(contour: sA, holes: [sB])
+        let shape = [sA] + [sB]
         guard let delaunay = shape.delaunay() else {
             return
         }

@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "itree",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iShape-Swift/iTree",
+      "state" : {
+        "revision" : "8f3bd10942fec5882a871edee5796165ff481705",
+        "version" : "0.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}

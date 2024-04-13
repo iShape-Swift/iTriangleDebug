@@ -98,7 +98,7 @@ final class MonotoneScene: ObservableObject, SceneContainer {
             let nLayout = s.nLayout
             for n in nLayout.specNodes {
                 let v = nLayout.navNodes[n.index]
-                let p = matrix.screen(worldPoint: v.vert.point.point)
+                let p = matrix.screen(worldPoint: v.vert.point.cgPoint)
                 let color: Color
                 let title: String
                 switch n.type {
@@ -144,13 +144,13 @@ final class MonotoneScene: ObservableObject, SceneContainer {
         }
     }
     
-    private func shape() -> FixShape {
-        var paths = [[FixVec]]()
+    private func shape() -> iShape.Shape {
+        var paths = [[Point]]()
         for editor in editors {
-            paths.append(editor.points.map({ $0.fix }))
+            paths.append(editor.points.map({ $0.point }))
         }
         
-        return FixShape(paths: paths)
+        return paths
     }
     
 }
